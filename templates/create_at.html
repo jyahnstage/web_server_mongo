@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/create_at" method="post" class="form-example">
+        <div class="form-example">
+          <label for="title">제목 입력:</label>
+          <input type="text" name="title" id="title" required>
+        </div>
+        <div class="form-example">
+          <label for="desc">내용 입력:</label>
+          <textarea id="desc" name="desc" rows="5" cols="33"></textarea>
+        </div>
+        <div class="form-example">
+            <label for="author">저자 입력:</label>
+            <input type="text" name="author" id="author" value="{{ session['username']}}" readonly>
+        </div>
+        <div class="form-example">
+          <input class="btn btn-success" type="submit" value="입력하기">
+        </div>
+      </form>
+
+      <a href="/list"><button type="submit">목록으로 돌아가기</button></a>
+      <a href="/"><button type="submit">홈으로</button></a>
+</body>
+</html>

@@ -38,21 +38,52 @@ class MyMongo:
         print(result)
         return "success"
 
-    def verify_password(self, input_password, id):
+    def verify_password(self, input_password, email):
         db = self.client.os
         users = db.users
-        user = users.find_one({'_id':id})
+        user = users.find_one({'email':email})
         if user:
             result = check_password(input_password, user['password'])
             if result:
                 print("인증 성공")
+                return 1
             else:
                 print("인증 실패")
+                return 2
         else:
-            print("id가 없습니다.")
+            print("회원정보가 없습니다.")
+            return 3
+        
+    def find_user(self, email):
+        db = self.client.os
+        users = db.users
+        user = users.find_one({'email': email})
+        print(user)
+        return user 
+
+    def find_data(self):
+        db = self.client.os
+        lists = db.lists
+        list = lists.find()
+        # for i in list:
+        #     print (i)
+        return list
+
+    def insert_data(self, title, desc, author):
+        db = self.client.os
+        lists = db.lists
+        list = {"title": title,
+                "desc": desc,
+                "author": author,
+                "create_at": datetime.datetime.now()
+                }
+        result = lists.insert_one(list)
+        print(result)
+        return "success"
 
 
 # mymongo = MyMongo(MONGODB_URL, 'os')
+# mymongo.find_user("6@naver.com")
 # # mymongo.user_insert("KIM", "2@naver.com","010-1111-1111", '1234')
 # mymongo.verify_password("1234", ObjectId('64ba2ab2935cc47e04bd5bf8'))
 

@@ -6,8 +6,15 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Welcome to MY HomePage!</h1>
-
-    {{ data }}
+    <a href="/register"><button type="submit">회원가입</button></a>
+    <a href="/login"><button type="submit">로그인</button></a>
+    <a href="/list"><button type="submit">목록</button></a>
+    <a href="/create_at"><button type="submit">글작성</button></a>
+    <a href="/admin"><button type="submit">관리자</button></a>
+    <h1>This is the main page</h1>
+    {% if session['is_logged'] %}
+    <h2>{{ session['username']}}님 반갑습니다.</h2>
+    <a href="/logout"><button type="submit">로그아웃</button></a>
+    {% endif %}
 </body>
 </html>
